@@ -99,12 +99,6 @@ jobs:
         # Required for python2 on 22.04
         sudo add-apt-repository universe
         
-        # Note: 'python-is-python2' does NOT exist in 22.04. We install the raw binary.
-        sudo apt -y install python2
-        
-        # This is required because there is no package to do it for us anymore.
-        sudo ln -sf /usr/bin/python2 /usr/bin/python
-        
         sudo apt -y install gperf gcc-multilib gcc-10-multilib g++-multilib g++-10-multilib \
         libc6-dev lib32ncurses5-dev x11proto-core-dev libx11-dev tree lib32z-dev \
         libgl1-mesa-dev libxml2-utils xsltproc bc ccache lib32readline-dev \
@@ -143,11 +137,6 @@ jobs:
         cd android-recovery
         git clone ${{ inputs.DEVICE_TREE }} -b ${{ inputs.DEVICE_TREE_BRANCH }} ./${{ inputs.DEVICE_PATH }}
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
-
-    - name: Installing python2 for legacy builds
-      if: env.CHECK_LEGACY_BRANCH == 'true'
-      run: |
-        sudo apt-get install python2 python-is-python2
 
     - name: Building Image 
       run: |
