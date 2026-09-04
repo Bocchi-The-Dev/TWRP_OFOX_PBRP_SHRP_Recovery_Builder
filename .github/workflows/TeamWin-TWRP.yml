@@ -38,7 +38,7 @@ on:
       MAKEFILE_NAME:
         description: 'MAKEFILE_NAME (excluding .mk extension, Example: omni_7304F)'
         required: true
-        default: 'twrp_x6525'
+        default: 'twrp_X6525'
       BUILD_TARGET:
         description: 'Specify your Build Target' # Pick among boot, recovery and vendor_boot
         required: true
